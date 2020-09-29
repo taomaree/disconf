@@ -805,7 +805,7 @@ public abstract class GenericDao<KEY extends Serializable, ENTITY extends BaseOb
         // 执行操作
         int rowCount = this.jdbcTemplate.update(new PreparedStatementCreator() {
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(sql);
+                PreparedStatement ps = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
                 int index = 1;
                 for (Object param : params) {
                     ps.setObject(index++, param);
@@ -837,7 +837,7 @@ public abstract class GenericDao<KEY extends Serializable, ENTITY extends BaseOb
         // 执行操作
         int rowCount = this.jdbcTemplate.update(new PreparedStatementCreator() {
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(sql);
+                PreparedStatement ps = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
                 int index = 1;
                 for (Object param : params) {
                     ps.setObject(index++, param);
